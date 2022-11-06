@@ -1,9 +1,7 @@
+on: push
+
 name: CD to Docker Hub
 
-on: push
-  create:
-    tags:
-      - "v*.*.*"
 
 jobs:
   build:
