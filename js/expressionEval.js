@@ -28,6 +28,10 @@ function eval(expression) {
         }
         let pre = -1;
         switch (sign) {
+          case '^':
+            pre = stk.pop();
+            stk.push(Math.pow(num, pre));
+            break;
           case '+':
             stk.push(num);
             break;
@@ -42,6 +46,13 @@ function eval(expression) {
             pre = stk.pop();
             stk.push(pre/num);
             break;
+          case 'e':
+            pre = stk.pop();
+            stk.push(Math.exp(pre));
+            break;
+          case 'l':
+            pre = stk.pop();
+            stk.push((Math.log(num) / (Math.log(pre))));
         }
         sign = c;
         num = 0;
