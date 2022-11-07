@@ -27,7 +27,7 @@ npm install
 ```
 
 You can then navigate to
-[localhost:3000](localhost:3000)
+[localhost:3000]('localhost:3000')
 
 ## Usage
 
