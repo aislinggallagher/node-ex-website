@@ -26,8 +26,10 @@ cd node-ex-website
 npm install
 ```
 
-You can then navigate to
-[localhost:3000]('localhost:3000')
+Then navigate to
+[localhost:3000](http://localhost:3000/)
+
+You can now enter any mathematical expression in the text box and the calculator will evaluate it,
 
 ## Usage
 
