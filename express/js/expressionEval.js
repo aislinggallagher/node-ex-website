@@ -5,70 +5,72 @@ function eval(expression) {
     return helper(Array.from(expression), 0);
   }
   
-  function helper(s, idx) {
+  function helper(stk, index) {
     
     try{ 
-      var stk = [];
+      var stack = [];
       let sign = '+';
       let num = 0;
-      for (let i = idx; i < s.length; i++) {
-        let c = s[i];
-        if (c >= '0' && c <= '9') {
-          num = num * 10 + (c - '0');
+      for (let inty = index; inty < stk.length; inty++) {
+        let curr = stk[inty];
+        if (curr >= '0' && curr <= '9') {
+          num = num * 10 + (curr - '0');
         }
-        if (!(c >= '0' && c <= '9') || i===s.length-1) {
-          if (c==='(') {
-            num = helper(s, i+1);
-            let l = 1, r = 0;
-            for (let j = i+1; j < s.length; j++) {
-              if (s[j]===')') {
-                r++;
-                if (r===l) {
-                  i=j; break;
+        if (!(curr >= '0' && curr <= '9') || inty === stk.length-1) {
+          if (curr ==='(') {
+            num = helper(stk, inty+1);
+            let length = 1, rep = 0;
+            for (let bindex = inty+1; bindex < stk.length; bindex++) {
+              if (stk[bindex]===')') {
+                rep++;
+                if (rep === length) {
+                  inty = bindex; 
+                  break;
                 }
               }
-              else if (s[j]==='(') l++;
+              else if (stk[bindex]==='(') 
+              length++;
             }
           }
           let pre = -1;
           switch (sign) {
             case '^':
-              pre = stk.pop();
-              stk.push(Math.pow(num, pre));
+              pre = stack.pop();
+              stack.push(Math.pow(num, pre));
               break;
             case '+':
-              stk.push(num);
+              stack.push(num);
               break;
             case '-':
-              stk.push(num*-1);
+              stack.push(num*-1);
               break;
             case '*':
-              pre = stk.pop();
-              stk.push(pre*num);
+              pre = stack.pop();
+              stack.push(pre*num);
               break;
             case '/':
-              pre = stk.pop();
-              stk.push(pre/num);
+              pre = stack.pop();
+              stack.push(pre/num);
               break;
             case 'e':
-              pre = stk.pop();
-              stk.push(Math.exp(pre));
+              pre = stack.pop();
+              stack.push(Math.exp(pre));
               break;
             case 'l':
-              pre = stk.pop();
-              stk.push((Math.log(num) / (Math.log(pre))));
+              pre = stack.pop();
+              stack.push((Math.log(num) / (Math.log(pre))));
               break;
             default:
               throw "Invail input";
           }
-          sign = c;
+          sign = curr;
           num = 0;
           if (c===')') break;
         }
       }
       let ans = 0;
-      while (stk.length > 0) {
-        ans += stk.pop();
+      while (stack.length > 0) {
+        ans += stack.pop();
       }
      let ansr = ans.toFixed(3);
       return ansr;
