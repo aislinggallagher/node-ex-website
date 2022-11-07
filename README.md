@@ -26,15 +26,13 @@ cd node-ex-website
 npm install
 ```
 
-Then navigate to
-[localhost:3000](http://localhost:3000/)
-
-You can now enter any mathematical expression in the text box and the calculator will evaluate it,
-
 ## Usage
 
 ```bash
 npm start
 ```
 
-## License
+Then navigate to
+[localhost:3000](http://localhost:3000/)
+
+You can now enter any mathematical expression in the text box and the calculator will evaluate it
