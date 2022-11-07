@@ -1,4 +1,4 @@
-function evaluate(expression) {
+function evaluateExpression(expression) {
   console.log(expression);
   expression = expression.replace(/\s/g, "");
   console.log(expression);
@@ -111,6 +111,6 @@ function helper(s, idx) {
   }
 }
 
-exports.evaluate = evaluate;
+exports.evaluateExpression = evaluateExpression;
 exports.isOperator = isOperator;
 exports.helper = helper;

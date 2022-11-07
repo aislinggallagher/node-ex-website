@@ -9,7 +9,9 @@ describe("Evaluation Function Valid", () => {
     ["-(2 + 3)", -5],
     ["-2 + -(2+3)", -7],
   ])("evaluating %p expecting %p", (expression, result) =>
-    expect(Number(evaluationFunctions.evaluate(expression))).toEqual(result)
+    expect(Number(evaluationFunctions.evaluateExpression(expression))).toEqual(
+      result
+    )
   );
 });
 
@@ -17,7 +19,7 @@ describe("Evaluation Function Valid", () => {
   it.each([["jiafsifwjif", "Invalid input, please try again"]])(
     "evaluating %p expecting %p",
     (expression, result) =>
-      expect(evaluationFunctions.evaluate(expression)).toEqual(result)
+      expect(evaluationFunctions.evaluateExpression(expression)).toEqual(result)
   );
 });
 
