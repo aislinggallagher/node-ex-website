@@ -5,9 +5,29 @@ function eval(expression) {
     return helper(Array.from(expression), 0);
   }
   
+  function isOperator(char) {
+    
+    if(char == '*' || char =='+' || char == '-'|| char == '/'|| char == '^'|| char == 'e'|| char == 'l'){
+
+      return true;
+    }
+
+    return false;
+  }
+
   function helper(s, idx) {
     
     try{ 
+      for(var i = 1; i < s.length; i++) {
+        current = s[i];
+        prev = s[i - 1];
+        if(isOperator(current) && isOperator(prev)) {
+          if(current == '-' && (prev != '*' || prev != '/' || prev != 'e' || prev != 'l')) {
+            continue;
+          }
+          throw "Invalid input";
+        }
+      }
       var stk = [];
       let sign = '+';
       let num = 0;
@@ -70,8 +90,12 @@ function eval(expression) {
       while (stk.length > 0) {
         ans += stk.pop();
       }
-     let ansr = ans.toFixed(3);
-      return ansr;
+
+     let ansRounded = ans.toFixed(3);
+     if(ansRounded %1 == 0){
+      ansRounded = Math.trunc(ansRounded);
+     }
+      return ansRounded;
 
     }catch(error){
       console.log(error);
