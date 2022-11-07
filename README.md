@@ -5,6 +5,13 @@ This is our implementation of a calculator web app for our software engineering 
 The web app can take a mathematical expression in string format from a text box and validate
 and evaulate it.
 
+# Contributors
+
+<a href="https://github.com/aislinggallagher/node-ex-website/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=aislinggallagher/node-ex-website" />
+</a>
+
+
 ## Installation
 
 Clone the repo
