@@ -3,7 +3,7 @@
 
 This is our implementation of a calculator web app for our software engineering module.
 The web app can take a mathematical expression in string format from a text box and validate
-and evaulate it.
+and evaulate it
 
 # Contributors
 
