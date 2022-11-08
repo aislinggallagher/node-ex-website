@@ -6,106 +6,95 @@ function evaluateExpression(expression) {
 }
 
 function isOperator(char) {
-  if (
-    char == "*" ||
-    char == "+" ||
-    char == "-" ||
-    char == "/" ||
-    char == "^" ||
-    char == "e" ||
-    char == "l"
-  ) {
+  if(char == '*' || char =='+' || char == '-'|| char == '/'|| char == '^'|| char == 'e'|| char == 'l'){
     return true;
   }
-
   return false;
 }
 
-function helper(s, idx) {
-  try {
-    for (var i = 1; i < s.length; i++) {
-      current = s[i];
-      prev = s[i - 1];
-      if (isOperator(current) && isOperator(prev)) {
-        if (
-          current == "-" &&
-          (prev != "*" || prev != "/" || prev != "e" || prev != "l")
-        ) {
+function helper(stack, idx) {
+  try{ 
+    for(var inty = 1; inty < stack.length; inty++) {
+      current = stack[inty];
+      prev = stack[inty - 1];
+      if(isOperator(current) && isOperator(prev)) {
+        if(current == '-' && (prev != '*' || prev != '/' || prev != 'e' || prev != 'l')) {
           continue;
         }
         throw "Invalid input";
       }
     }
     var stk = [];
-    let sign = "+";
+    let sign = '+';
     let num = 0;
-    for (let i = idx; i < s.length; i++) {
-      let c = s[i];
-      if (c >= "0" && c <= "9") {
-        num = num * 10 + (c - "0");
+    for (let inty = idx; inty < stack.length; inty++) {
+      let curr = stack[inty];
+      if (curr >= '0' && curr <= '9') {
+        num = num * 10 + (curr - '0');
       }
-      if (!(c >= "0" && c <= "9") || i === s.length - 1) {
-        if (c === "(") {
-          num = helper(s, i + 1);
-          let l = 1,
-            r = 0;
-          for (let j = i + 1; j < s.length; j++) {
-            if (s[j] === ")") {
-              r++;
-              if (r === l) {
-                i = j;
+      if (!(curr >= '0' && curr <= '9') || inty === stack.length-1) {
+        if (curr ==='(') {
+          num = helper(stack, inty+1);
+          let leng = 1;
+          let res = 0;
+          for (let brac = inty + 1; brac < stack.length; brac++) {
+            if (stack[brac]===')') {
+              res++;
+              if (res === leng) {
+                inty = brac; 
                 break;
               }
-            } else if (s[j] === "(") l++;
+            }
+            else if (stack[brac] === '(') 
+            leng++;
           }
         }
         let pre = -1;
         switch (sign) {
-          case "^":
+          case '^':
             pre = stk.pop();
             stk.push(Math.pow(num, pre));
             break;
-          case "+":
+          case '+':
             stk.push(num);
             break;
-          case "-":
-            stk.push(num * -1);
+          case '-':
+            stk.push(num*-1);
             break;
-          case "*":
+          case '*':
             pre = stk.pop();
-            stk.push(pre * num);
+            stk.push(pre*num);
             break;
-          case "/":
+          case '/':
             pre = stk.pop();
-            stk.push(pre / num);
+            stk.push(pre/num);
             break;
-          case "e":
+          case 'e':
             pre = stk.pop();
             stk.push(Math.exp(pre));
             break;
-          case "l":
+          case 'l':
             pre = stk.pop();
-            stk.push(Math.log(num) / Math.log(pre));
+            stk.push((Math.log(num) / (Math.log(pre))));
             break;
           default:
             throw "Invail input";
         }
-        sign = c;
+        sign = curr;
         num = 0;
-        if (c === ")") break;
+        if (curr ===')') break;
       }
     }
     let ans = 0;
     while (stk.length > 0) {
       ans += stk.pop();
     }
-
     let ansRounded = ans.toFixed(3);
-    if (ansRounded % 1 == 0) {
-      ansRounded = Math.trunc(ansRounded);
-    }
+    if(ansRounded %1 == 0){
+    ansRounded = Math.trunc(ansRounded);
+   }
     return ansRounded;
-  } catch (error) {
+  }catch(error){
     console.log(error);
     return "Invalid input, please try again";
   }
