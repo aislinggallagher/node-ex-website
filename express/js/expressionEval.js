@@ -4,7 +4,7 @@ function evaluateExpression(expression) {
   console.log(expression);
   return helper(Array.from(expression), 0);
 }
-//test comment
+//test
 function isOperator(char) {
   if(char == '*' || char =='+' || char == '-'|| char == '/'|| char == '^'|| char == 'e'|| char == 'l'){
     return true;
