@@ -35,4 +35,4 @@ npm start
 Then navigate to
 [localhost:3000](http://localhost:3000/)
 
-You can now enter any mathematical expression in the text box and the calculator will evaluate it
+You can now enter any mathematical expression in the text box and the calculator will evaluate it. 
