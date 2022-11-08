@@ -1,11 +1,13 @@
 {
-    "name": "node-ex-website",
-    "version": "1.0.0",
-    "description": "",
-    "scripts": {
-        "start": "node server.js"
-    },
-    "dependencies": {
-        "express": "^4.17.1"
-    }
+  "name": "node-ex-website",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest --collectCoverage"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^29.3.0"
+  }
 }

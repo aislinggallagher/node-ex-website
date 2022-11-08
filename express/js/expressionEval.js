@@ -1,12 +1,11 @@
-function eval(expression) {
+function evaluateExpression(expression) {
   console.log(expression);
-  expression = expression.replace(/\s/g, '');
+  expression = expression.replace(/\s/g, "");
   console.log(expression);
   return helper(Array.from(expression), 0);
 }
 
 function isOperator(char) {
-  
   if(char == '*' || char =='+' || char == '-'|| char == '/'|| char == '^'|| char == 'e'|| char == 'l'){
     return true;
   }
@@ -100,5 +99,7 @@ function helper(stack, idx) {
     return "Invalid input, please try again";
   }
 }
-  
-  
+
+exports.evaluateExpression = evaluateExpression;
+exports.isOperator = isOperator;
+exports.helper = helper;
